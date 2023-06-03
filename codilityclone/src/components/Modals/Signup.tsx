@@ -28,13 +28,11 @@ const Signup: React.FC<SignupProps> = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
     const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.name, e.target.value)
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(inputs)
         try {
             const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password)
             if (!newUser) return
