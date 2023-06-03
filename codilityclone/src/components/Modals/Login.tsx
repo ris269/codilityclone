@@ -10,7 +10,7 @@ const Login: React.FC<LoginProps> = () => {
     const setAuthModalState = useSetRecoilState(authModalState)
 
     const handleClick = (type: 'login' | 'register' | 'forgotPassword') => {
-        setAuthModalState((prev) => ({ ...prev, type}))        
+        setAuthModalState((prev) => ({ ...prev, type }))
     }
 
     return (
