@@ -1,6 +1,9 @@
 import { authModalState } from '@/atoms/authModalAtom';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { auth } from '@/firebase/firebase';
+import { Router, useRouter } from 'next/router';
 
 type SignupProps = {
 
@@ -13,15 +16,43 @@ const Signup: React.FC<SignupProps> = () => {
         setAuthModalState((prev) => ({ ...prev, type: 'login' }))
     }
 
+    const [inputs, setInputs] = useState({ email: '', displayName: '', password: '' })
+
+    const router = useRouter()
+
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.name, e.target.value)
+        setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log(inputs)
+        try {
+            const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password)
+            if (!newUser) return
+            router.push('/')
+        } catch (error: any) {
+            alert(error.message)
+        }
+    }
 
     return (
-        <form className='space-y-6 px-6 pb-4'>
+        <form className='space-y-6 px-6 pb-4' onSubmit={handleRegister}>
             <h3 className='text-xl font-medium text-white'>Register to Codility</h3>
             <div>
                 <label htmlFor='email' className='text-sm font-medium block mb-2 text-gray-300'>
                     Email
                 </label>
                 <input
+                    onChange={handleChangeInput}
                     type='email'
                     name='email'
                     id='email'
@@ -37,6 +68,7 @@ const Signup: React.FC<SignupProps> = () => {
                     Display Name
                 </label>
                 <input
+                    onChange={handleChangeInput}
                     type='displayName'
                     name='displayName'
                     id='displayName'
@@ -52,6 +84,7 @@ const Signup: React.FC<SignupProps> = () => {
                     Password
                 </label>
                 <input
+                    onChange={handleChangeInput}
                     type='password'
                     name='password'
                     id='password'
