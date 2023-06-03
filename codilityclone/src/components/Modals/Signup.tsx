@@ -8,10 +8,10 @@ const Signup: React.FC<SignupProps> = () => {
 
     return (
         <form className='space-y-6 px-6 pb-4'>
-            <h3 className='text-xl font-medium text-white'>Sign in to Codility</h3>
+            <h3 className='text-xl font-medium text-white'>Register to Codility</h3>
             <div>
                 <label htmlFor='email' className='text-sm font-medium block mb-2 text-gray-300'>
-                    Your Email
+                    Email
                 </label>
                 <input
                     type='email'
@@ -25,8 +25,23 @@ const Signup: React.FC<SignupProps> = () => {
             </div>
 
             <div>
+                <label htmlFor='displayName' className='text-sm font-medium block mb-2 text-gray-300'>
+                    Display Name
+                </label>
+                <input
+                    type='displayName'
+                    name='displayName'
+                    id='displayName'
+                    className='
+            border-2 outline-none sm:text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 
+            bg-gray-600 border-gray-500 placeholder-gray-400 text-white'
+                    placeholder='Your name'
+                />
+            </div>
+
+            <div>
                 <label htmlFor='password' className='text-sm font-medium block mb-2 text-gray-300'>
-                    Your Password
+                    Password
                 </label>
                 <input
                     type='password'
@@ -44,16 +59,11 @@ const Signup: React.FC<SignupProps> = () => {
                 Login
             </button>
 
-            <button className='flex w-full justify-end'>
-                <a href='#' className='text-sm block text-brand-orange hover:underline w-full text-right'>
-                    Forgot Password?
-                </a>
-            </button>
 
             <div className='text-sm font-medium text-gray-500'>
-                Not Registered? {' | '}
+                Already have an account ? {' | '}
                 <a href='#' className='text-blue-700 hover:underline'>
-                    Create account
+                    Log In 
                 </a>
             </div>
         </form>
