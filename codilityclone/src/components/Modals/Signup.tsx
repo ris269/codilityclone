@@ -1,5 +1,5 @@
 import { authModalState } from '@/atoms/authModalAtom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/firebase';
@@ -31,8 +31,14 @@ const Signup: React.FC<SignupProps> = () => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
+    useEffect(() => {
+      if (error) alert(error.message)
+    }, [error])
+    
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if (!inputs.email || inputs.password || inputs.displayName) return alert('Please fill all required fields')
+
         try {
             const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password)
             if (!newUser) return
@@ -99,7 +105,7 @@ const Signup: React.FC<SignupProps> = () => {
     text-sm px-5 py-2.5 text-center bg-brand-orange hover:bg-brand-orange-s'
 
             >
-                Register
+                {loading ? 'Registering...' : 'Register'}
             </button>
 
 
