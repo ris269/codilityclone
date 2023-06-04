@@ -36,8 +36,9 @@ const Signup: React.FC<SignupProps> = () => {
     }, [error])
     
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+        console.log(inputs)
         e.preventDefault()
-        if (!inputs.email || inputs.password || inputs.displayName) return alert('Please fill all required fields')
+        if (!inputs.email || !inputs.password || !inputs.displayName) return alert('Please fill all required fields')
 
         try {
             const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password)
