@@ -76,7 +76,10 @@ const ProblemsTable: React.FC<ProblemsTableProps> = () => {
                                     fontSize={"35"}
                                     className='cursor-pointer absolute -top-16 right-0'
                                     onClick={closeYoutubeModal} />
-                                <YouTube videoId={youtubePlayer.videoId} loading='lazy' iframeClassName='w-full min-h-[500px]' />
+                                <YouTube
+                                    videoId={youtubePlayer.videoId}
+                                    loading='lazy'
+                                    iframeClassName='w-full min-h-[500px]' />
                             </div>
                         </div>
                     </div>
