@@ -6,17 +6,17 @@ type TimerProps = {
 }
 
 const Timer: React.FC<TimerProps> = () => {
-    const [showTimer, setshowTimer] = useState<boolean>(false)
+    const [showTimer, setshowTimer] = useState<boolean>(true)
 
     return (
         <div>
             {showTimer ? (
-                <div className='flex item-center space-x-2 bg-dark-fill-3 py-1.5 cursor-pointer rounded hover:bg-dark-fill-2'>
+                <div className='flex items-center space-x-2 bg-dark-fill-3 p-1.5 cursor-pointer rounded hover:bg-dark-fill-2'>
                     <div>00:100:12</div>
                     <FiRefreshCcw />
                 </div>
             ) : (
-                <div className='flex item-center p-1 h-8 hover:bg-dark-fill-3 rounded cursor-pointer'>
+                <div className='flex items-center p-1 h-8 hover:bg-dark-fill-3 rounded cursor-pointer'>
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
                         viewBox='0 0 24 24'
