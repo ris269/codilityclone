@@ -6,6 +6,6 @@ type ProblemDescriptionProps = {
 
 const ProblemDescription:React.FC<ProblemDescriptionProps> = () => {
     
-    return <div>Problem description</div>
+    return <div className='h-screen'>Problem description</div>
 }
 export default ProblemDescription;
